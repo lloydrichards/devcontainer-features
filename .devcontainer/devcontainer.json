@@ -41,5 +41,8 @@
     }
   },
   "updateContentCommand": "npm install -g @devcontainers/cli",
-  "remoteUser": "node"
+  "remoteUser": "node",
+  "mounts": [
+    "source=${localEnv:HOME}/.config/opencode,target=/home/node/.config/opencode,type=bind,readonly"
+  ]
 }
