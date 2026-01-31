@@ -15,6 +15,7 @@ THEME_SOURCE="$FEATURE_DIR/theme.toml"
 THEME_DIR="/usr/local/share/oh-my-posh"
 THEME_DEST="$THEME_DIR/theme.toml"
 INIT_SNIPPET_PATH="/etc/profile.d/oh-my-posh.zsh"
+ZSHRC_SYSTEM="/etc/zshrc"
 
 log "Installing oh-my-posh..."
 if ! command -v curl >/dev/null 2>&1 || ! command -v unzip >/dev/null 2>&1; then
@@ -42,5 +43,16 @@ if [ -n "$ZSH_VERSION" ] && [ -o interactive ]; then
     eval "$(oh-my-posh init zsh --config /usr/local/share/oh-my-posh/theme.toml)"
 fi
 EOF
+
+if [ -f "$ZSHRC_SYSTEM" ] && ! grep -q "oh-my-posh.zsh" "$ZSHRC_SYSTEM"; then
+    log "Ensuring /etc/zshrc sources oh-my-posh init"
+    cat >> "$ZSHRC_SYSTEM" << 'EOF'
+
+# Load oh-my-posh init if available
+if [ -f /etc/profile.d/oh-my-posh.zsh ]; then
+    source /etc/profile.d/oh-my-posh.zsh
+fi
+EOF
+fi
 
 log "Installation completed successfully"
