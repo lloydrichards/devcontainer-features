@@ -11,7 +11,11 @@ Install oh-my-posh and initialize zsh with a bundled theme.
 }
 ```
 
+## Options
 
+| Options Id | Description | Type | Default Value |
+|-----|-----|-----|-----|
+| themePath | Absolute path or URL to a custom theme file to copy into the container. Leave empty to use the bundled theme.toml. | string | - |
 
 
 
