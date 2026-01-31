@@ -1,0 +1,107 @@
+version = 3
+final_space = true
+
+[palette]
+  blue = '#89B4FA'
+  closer = 'p:os'
+  lavender = '#B4BEFE'
+  os = '#ACB0BE'
+  pink = '#F5C2E7'
+
+[upgrade]
+  source = 'cdn'
+  interval = '168h'
+  auto = false
+  notice = false
+
+[transient_prompt]
+  background = "transparent"
+  foreground = "#ffffff"
+
+  template = "<d> </d>"
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newLine = true
+
+  [[blocks.segments]]
+    type = 'os'
+    style = 'plain'
+    template = '{{.Icon}} '
+    foreground = 'p:os'
+
+  [[blocks.segments]]
+    type = 'session'
+    style = 'plain'
+    template = '{{ .UserName }}@{{ .HostName }} '
+    foreground = 'p:blue'
+
+  [[blocks.segments]]
+    type = "text"
+    style = "plain"
+    foreground = "p:lavender"
+    template = "{{ if .Env.DEVCONTAINER }} devcontainer {{ end }}"
+
+  [[blocks.segments]]
+    type = 'path'
+    style = 'plain'
+    template = '{{ .Path }} '
+    foreground = 'p:pink'
+
+    [blocks.segments.properties]
+      folder_icon = '....'
+      home_icon = '~'
+      style = 'agnoster_short'
+
+  [[blocks.segments]]
+    type = 'git'
+    style = 'plain'
+    template = '{{ .HEAD }} '
+    foreground = 'p:lavender'
+
+    [blocks.segments.properties]
+      branch_icon = ' '
+      cherry_pick_icon = ' '
+      commit_icon = ' '
+      fetch_status = false
+      fetch_upstream_icon = false
+      merge_icon = ' '
+      no_commits_icon = ' '
+      rebase_icon = ' '
+      revert_icon = ' '
+      tag_icon = ' '
+
+  [[blocks.segments]]
+    type = "nix-shell"
+    style = "powerline"
+    foreground = "blue"
+    background = "transparent"
+    template = "(nix-{{ .Type }})"
+
+  [[blocks.segments]]
+    template = ''
+    foreground = 'p:closer'
+    type = 'text'
+    style = 'plain'
+    
+[[blocks]]
+  type = 'rprompt'
+  overflow = 'hidden'
+  alignment = 'right'
+
+  [[blocks.segments]]
+    type = 'executiontime'
+    style = 'plain'
+    template = '⏱ {{ .FormattedMs }} '
+    foreground = 'p:os'
+    
+    [blocks.segments.properties]
+      threshold = 1000
+      style = 'austin'
+
+  [[blocks.segments]]
+    type = 'time'
+    style = 'plain'
+    template = '{{ .CurrentDate | date "15:04:05" }}'
+    foreground = 'p:lavender'

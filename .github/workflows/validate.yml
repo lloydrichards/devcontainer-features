@@ -14,6 +14,7 @@ jobs:
       matrix:
         features:
           - hello-world
+          - oh-my-posh-theme
         baseImage:
           - debian:latest
           - ubuntu:latest
