@@ -1,6 +1,6 @@
 {
   "id": "oh-my-posh-theme",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "name": "Oh My Posh Theme",
   "documentationURL": "https://github.com/lloydrichards/devcontainer-features/tree/main/src/oh-my-posh-theme",
   "description": "Install oh-my-posh and initialize zsh with a bundled theme.",

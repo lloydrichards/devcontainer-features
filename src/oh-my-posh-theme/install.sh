@@ -40,8 +40,10 @@ log "Writing zsh init snippet"
 cat > "$INIT_SNIPPET_PATH" << 'EOF'
 # oh-my-posh initialization for zsh
 export DEVCONTAINER=1
-if [ -n "$ZSH_VERSION" ] && [ -o interactive ]; then
-    eval "$(oh-my-posh init zsh --config /usr/local/share/oh-my-posh/theme.toml)"
+if [ -n "$ZSH_VERSION" ]; then
+    case "$-" in
+        *i*) eval "$(oh-my-posh init zsh --config /usr/local/share/oh-my-posh/theme.toml)" ;;
+    esac
 fi
 EOF
 
