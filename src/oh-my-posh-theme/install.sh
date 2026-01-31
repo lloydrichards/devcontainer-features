@@ -44,7 +44,12 @@ if [ -n "$ZSH_VERSION" ] && [ -o interactive ]; then
 fi
 EOF
 
-if [ -f "$ZSHRC_SYSTEM" ] && ! grep -q "oh-my-posh.zsh" "$ZSHRC_SYSTEM"; then
+if [ ! -f "$ZSHRC_SYSTEM" ]; then
+    log "Creating /etc/zshrc"
+    touch "$ZSHRC_SYSTEM"
+fi
+
+if ! grep -q "oh-my-posh.zsh" "$ZSHRC_SYSTEM"; then
     log "Ensuring /etc/zshrc sources oh-my-posh init"
     cat >> "$ZSHRC_SYSTEM" << 'EOF'
 
