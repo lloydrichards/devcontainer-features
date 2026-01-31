@@ -7,11 +7,7 @@
 
   // Features to add to the dev container. More info: https://containers.dev/features.
   "features": {
-    "ghcr.io/devcontainers/features/common-utils:2": {
-      "configureZshAsDefaultShell": true,
-      "installOhMyZsh": true,
-      "installOhMyZshConfig": true
-    },
+    "ghcr.io/lloydrichards/devcontainer-features/oh-my-posh-theme:latest": {},
     "ghcr.io/shyim/devcontainers-features/bun:0": {},
     "ghcr.io/devcontainers/features/docker-in-docker:2": {
       "moby": false
@@ -43,6 +39,7 @@
   "updateContentCommand": "npm install -g @devcontainers/cli",
   "remoteUser": "node",
   "mounts": [
-    "source=${localEnv:HOME}/.config/opencode,target=/home/node/.config/opencode,type=bind,readonly"
+    "source=${localEnv:HOME}/.config/opencode,target=/home/node/.config/opencode,type=bind,readonly",
+    "source=${localEnv:HOME}/.local/share/opencode,target=/home/node/.local/share/opencode,type=bind"
   ]
 }
