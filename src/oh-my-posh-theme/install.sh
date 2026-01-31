@@ -16,6 +16,7 @@ THEME_DIR="/usr/local/share/oh-my-posh"
 THEME_DEST="$THEME_DIR/theme.toml"
 INIT_SNIPPET_PATH="/etc/profile.d/oh-my-posh.zsh"
 ZSHRC_SYSTEM="/etc/zshrc"
+ZSHRC_SYSTEM_ALT="/etc/zsh/zshrc"
 
 log "Installing oh-my-posh..."
 if ! command -v curl >/dev/null 2>&1 || ! command -v unzip >/dev/null 2>&1; then
@@ -44,20 +45,29 @@ if [ -n "$ZSH_VERSION" ] && [ -o interactive ]; then
 fi
 EOF
 
-if [ ! -f "$ZSHRC_SYSTEM" ]; then
-    log "Creating /etc/zshrc"
-    touch "$ZSHRC_SYSTEM"
-fi
+ensure_zshrc_sources_posh() {
+    local zshrc_path="$1"
 
-if ! grep -q "oh-my-posh.zsh" "$ZSHRC_SYSTEM"; then
-    log "Ensuring /etc/zshrc sources oh-my-posh init"
-    cat >> "$ZSHRC_SYSTEM" << 'EOF'
+    if [ ! -f "$zshrc_path" ]; then
+        log "Creating $zshrc_path"
+        touch "$zshrc_path"
+    fi
+
+    if ! grep -q "oh-my-posh.zsh" "$zshrc_path"; then
+        log "Ensuring $zshrc_path sources oh-my-posh init"
+        cat >> "$zshrc_path" << 'EOF'
 
 # Load oh-my-posh init if available
 if [ -f /etc/profile.d/oh-my-posh.zsh ]; then
     source /etc/profile.d/oh-my-posh.zsh
 fi
 EOF
+    fi
+}
+
+ensure_zshrc_sources_posh "$ZSHRC_SYSTEM"
+if [ -f "$ZSHRC_SYSTEM_ALT" ] || [ -d "$(dirname "$ZSHRC_SYSTEM_ALT")" ]; then
+    ensure_zshrc_sources_posh "$ZSHRC_SYSTEM_ALT"
 fi
 
 log "Installation completed successfully"
