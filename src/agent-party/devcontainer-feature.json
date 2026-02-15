@@ -1,0 +1,25 @@
+{
+  "id": "agent-party",
+  "version": "1.0.0",
+  "name": "Agent Party Feature",
+  "documentationURL": "https://github.com/lloydrichards/devcontainer-features/tree/main/src/agent-party",
+  "description": "Install a small DnD-themed agent party (agents, commands, skills) using Rulesync.",
+  "options": {
+    "targets": {
+      "type": "string",
+      "description": "Comma-separated list of Rulesync targets to generate.",
+      "default": "opencode"
+    },
+    "features": {
+      "type": "string",
+      "description": "Comma-separated list of Rulesync features to generate.",
+      "default": "rules,commands,subagents,skills"
+    },
+    "configPath": {
+      "type": "string",
+      "description": "Global Rulesync configuration path inside the container.",
+      "default": "/usr/local/share/rulesync"
+    }
+  },
+  "postCreateCommand": "rulesync-init"
+}

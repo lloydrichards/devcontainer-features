@@ -6,6 +6,7 @@ A collection of custom Dev Container Features for enhancing development environm
 
 | Feature | Description | Container URL |
 | --- | --- | --- |
+| Agent Party | Install a bundled agent collection using Rulesync. | `ghcr.io/lloydrichards/devcontainer-features/agent-party:1` |
 | Hello World | A simple hello world feature for devcontainers. | `ghcr.io/lloydrichards/devcontainer-features/hello-world:1` |
 | Oh My Posh Theme | Install oh-my-posh and initialize zsh with a bundled theme. | `ghcr.io/lloydrichards/devcontainer-features/oh-my-posh-theme:1` |
 
